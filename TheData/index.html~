@@ -9,9 +9,9 @@
            Semantic Web for the Working Ontologist
        </title>
        <link rel="stylesheet" type="text/css" media="screen" href=
-       "../css/default.css" />
+       "css/default.css" />
        <link rel="stylesheet" type="text/css" media="print" href=
-       "../css/print.css" />   <meta property="og:title" content="Semantic Web for the Working Ontologist"/>
+       "css/print.css" />   <meta property="og:title" content="Semantic Web for the Working Ontologist"/>
     <meta property="og:type" content="book"/>
     <meta property="og:url" content="http://www.workingontologist.com/"/>
     <meta property="og:image" content="http://covers.elsevier.com/165_FW/9780123735560.jpg"/>
