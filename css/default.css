@@ -1,5 +1,5 @@
 body {
-    background: url('../images/book_1.jpg') #eaeae3 no-repeat;
+    background: url('../images/book_1.gif') #eaeae3 no-repeat;
     padding: 2em;
     font-family: sans-serif;
     font-size: 100%;
@@ -42,7 +42,7 @@ h3 {
     font-size: 1.2em;
     font-weight: bold;
     text-align: left;
-    color: #57c311;
+    color: #61363d;
     margin: 0.5em 0;
     margin-bottom: .2em;
 }
@@ -98,8 +98,8 @@ td {
 #header_links h1 {
     margin: 0;
     padding: 0;
-    color: #d7dd59;
-   text-transform: uppercase;
+    color: #61363d;
+    text-transform: uppercase;
     font-family: Arial, sans-serif;
     font-weight: bold;
     letter-spacing: 1pt;
@@ -127,7 +127,7 @@ td {
 .title {
     font-family: Arial, sans-serif;
     font-weight: bold;
-    color: #789dca;
+    color: #0d3c66;
 }
 
 .big_title {
@@ -136,7 +136,7 @@ td {
 }
 
 #header_links a {
-    color: #98bdea;
+    color: #081c41;
     font-size: 60%;
     text-transform: lowercase;
 }
