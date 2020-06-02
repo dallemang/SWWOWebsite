@@ -1,0 +1,153 @@
+body {
+    background: url('../images/book_1.jpg') #eaeae3 no-repeat;
+    padding: 2em;
+    font-family: sans-serif;
+    font-size: 100%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+li,
+dd,
+table,
+p {
+    font-size: .8em;
+    line-height: 160%;
+    margin-top: 0;
+}
+
+dd {
+   padding-top: .3em;
+   padding-bottom: 1.7em;
+   text-align: left;
+}
+
+dt {
+   text-align: left;
+}
+
+th {
+    padding: 0 .4em;
+    text-align: left;
+}
+
+tr:hover {
+    background: #eaeae3;
+}
+
+caption,
+h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: left;
+    color: #57c311;
+    margin: 0.5em 0;
+    margin-bottom: .2em;
+}
+
+h5 {
+    margin-bottom: 0;
+}
+
+td {
+    text-align: left;
+    padding: .4em;
+    vertical-align: top;
+}
+
+#downloads,
+#errata,
+#blurb_and_news {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#errata,
+#blurb_and_news,
+#footer,
+#downloads,
+#authors {
+    margin-left: 340px;
+    background: white;
+    padding: .6em;
+    border: 3px solid #98bdea;
+}
+
+#authors {
+    padding-bottom: 0;
+}
+
+#header_links {
+    background: url('../images/check.png') repeat;
+    padding: .4em;
+    text-align: center;
+    border: 1px solid white;
+}
+
+#footer {
+    margin-top: 30px;
+}
+
+.author {
+    padding-bottom: .6em;
+}
+
+
+#header_links h1 {
+    margin: 0;
+    padding: 0;
+    color: #d7dd59;
+   text-transform: uppercase;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 1pt;
+}
+
+#news {
+    margin-top: 30px;
+}
+
+#errors {
+    text-align: right;
+}
+
+#footer p {
+    font-size: .7em;
+    margin: 0;
+}
+
+.date,
+.name {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.title {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #789dca;
+}
+
+.big_title {
+    font-size: 170%;
+    line-height: 140%;
+}
+
+#header_links a {
+    color: #98bdea;
+    font-size: 60%;
+    text-transform: lowercase;
+}
+
+#header_links a:hover,
+#header_links a:visited {
+    text-decoration: none;
+}
+
+.shouldbe {
+    font-size: .9em;
+    font-style: italic;
+    color: #662244;
+}
