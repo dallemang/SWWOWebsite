@@ -1,63 +1,93 @@
-<html>
-  <head>
-	<style type="text/css" id="wp-custom-css">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><script type="text/javascript">var a=new Date,b=a.getUTCHours();if(0==a.getUTCMonth()&&2012==a.getUTCFullYear()&&((18==a.getUTCDate()&&13<=b)||(19==a.getUTCDate()&&0>=b)))window.location="http://sopastrike.com/strike";</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Semantic Web for the Working Ontologist
+</title>
+<link rel="stylesheet" type="text/css" media="screen" href=
+      "../css/default.css" />
+<link rel="stylesheet" type="text/css" media="print" href=
+      "../css/print.css" />   <meta property="og:title" content="Semantic Web for the Working Ontologist"/>
+<meta property="og:type" content="book"/>
+<meta property="og:url" content="http://www.workingontologist.com/"/>
+<meta property="og:image" content="http://covers.elsevier.com/165_FW/9780123735560.jpg"/>
+<meta property="og:site_name" content="Working Ontologist"/>
+<meta property="fb:admins" content="682372812"/>
+<style type="text/css" id="wp-custom-css">
 
-	  .qdiv{
-	      width: 800
-	  }
-	  .centered{
-	      display: block;   margin-left: auto;   margin-right: auto;
-	  }
-	  .display_none{
-              display:none;
-	  }
-		</style>
-  </head>
-  <body>
+  .qdiv{
+  width: 800
+  }
+  .centered{
+  display: block;   margin-left: auto;   margin-right: auto;
+  }
+  .display_none{
+  display:none;
+  }
+</style>
+</head>
+<body>
+  <div id="header_links">
+    <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">The Queries</a></h1>
+  </div>
+  <div id="blurb_and_news" >
     <div class="qdiv">
+      <p>When you explore a new data set, you don't necessarily know much about it. You can use SPARQL to learn about the metadata of your set as well.  Here, we'll start with James Dean, but we're really interest in metadata about actors in general. </p>
+
+      <p>You can download the dataset for these queries <a href="https://query.data.world/s/pa2bmap5w2pwnn5xzniwuiwtzfoye3">here</a>.</p>
+
+      <p>You can cross-reference the queries to the book by query number or name.</p>
+
       <h3>Query ch6.10 All about James Dean</h3>
+      <p>We can use a single triple to find out all the things the data set knows about James Dean, and what it calls the properties that define it</p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=30585fa8-b8a1-4ded-8e4b-f1a2bb6547e6"></iframe>
       </div>
 
       <div >
 	<img 
-	  class="centered"
-	  src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
+	    class="centered"
+	    src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
       </div>
     </div>
     <div class="qdiv">
       <h3>Query ch6.11 What about James Dean?</h3>
+      <p>We can project this and only get the property names.</p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=23a16c97-f816-45cf-84f9-a8b51c0fff6a"></iframe>
       </div>
 
       <div >
 	<img 
-	  class="centered"
-	  src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
+	    class="centered"
+	    src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
       </div>
     </div>
     <div class="qdiv">
       <h3>Query ch6.12 Just what about James Dean?</h3>
+      <p>But that means some properties will appear twice.  We can ask for the distinct ones.</p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=6bd86547-93ad-4d5a-b9ce-74beccf19f27"></iframe>
       </div>
 
       <div >
 	<img 
-	  class="centered"
-	  src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
+	    class="centered"
+	    src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
       </div>
     </div>
     <div class="qdiv">
       <h3>Query ch6.13 What about any actor?</h3>
+      <p>We might know things about some actors that we don't know about James Dean; we can use this same idea to investigate actors in general.</p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=df9287b6-637d-420c-9dfa-cd77b9a65251"></iframe>
       </div>
 
       <div >
 	<img 
-	  class="centered"
-	  src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
+	    class="centered"
+	    src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
       </div>
     </div>
-    </body>
-    </html>
-    
+</div>    </body>
+</html>
+
