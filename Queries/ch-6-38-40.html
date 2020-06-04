@@ -34,8 +34,12 @@
        <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">The Queries</a></h1>
      </div>
      <div id="blurb_and_news" >
+<p>These queries use a resource called the linkedMDB, the Linked Movie Database.  It is a simple translation of a relational database about movies into RDF.  It hasn't been maintained for a while, but it is still good for making examples.  Because it was a relational database, it has some interseting foibles that we explore in these queries. </p>
+       <p>The data for these queries can be dowloaded from <a href="https://query.data.world/s/2p67sbeleevvx6gqw7gmkiumseqd3c">linkedMDB.ttl</a>       </p>
     <div class="qdiv">
       <h3>Query ch6.38 Matching Directors and Actors</h3>
+      <p>Sometimes actors are also directors.  Since the linkedMDB came from a database with separate tables for Director and Actor, these aren't obviously the same entity.  We can find out that they are the same by using their foaf:page.</p>
+      <p>In this query, we filter the data to match the output shown in the book; feel free to remove those lines to see all the output. </p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=2cfcbd39-c7f0-4956-a848-710def4c4161"></iframe>
       </div>
 
