@@ -2,7 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-   <head><script type="text/javascript">var a=new Date,b=a.getUTCHours();if(0==a.getUTCMonth()&&2012==a.getUTCFullYear()&&((18==a.getUTCDate()&&13<=b)||(19==a.getUTCDate()&&0>=b)))window.location="http://sopastrike.com/strike";</script>
+  <head  profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon" 
+      type="image/png" 
+      href="../images/favicon.ico"/>
+    <script type="text/javascript">var a=new Date,b=a.getUTCHours();if(0==a.getUTCMonth()&&2012==a.getUTCFullYear()&&((18==a.getUTCDate()&&13<=b)||(19==a.getUTCDate()&&0>=b)))window.location="http://sopastrike.com/strike";</script>
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
        <title>
            Semantic Web for the Working Ontologist
@@ -16,27 +20,23 @@
     <meta property="og:image" content="http://covers.elsevier.com/165_FW/9780123735560.jpg"/>
     <meta property="og:site_name" content="Working Ontologist"/>
     <meta property="fb:admins" content="682372812"/>
-	<style type="text/css" id="wp-custom-css">
 
-	  .qdiv{
-	      width: 800
-	  }
-	  .centered{
-	      display: block;   margin-left: auto;   margin-right: auto;
-	  }
-	  .display_none{
-              display:none;
-	  }
-		</style>
    </head>
    <body>
      <div id="header_links">
        <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">The Queries</a></h1>
      </div>
      <div id="blurb_and_news" >
-    <div class="qdiv">
-      <h3>Query ch6.42 Self-directing Actors</h3>
-      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=d399c7d8-b84f-428f-b55c-b6acde3bd6f2"></iframe>
+       <div class="qdiv">
+
+<p>These queries use a resource called the linkedMDB, the Linked Movie Database.  It is a simple translation of a relational database about movies into RDF.  It hasn't been maintained for a while, but it is still good for making examples.  Because it was a relational database, it has some interseting foibles that we explore in these queries. </p>
+       <p>The data for these queries can be dowloaded from <a href="https://query.data.world/s/2p67sbeleevvx6gqw7gmkiumseqd3c">linkedMDB.ttl</a>, as well as the data from the <a href="https://query.data.world/s/gbdhhtzbniwujuuh4vua7744fvhth2">output of the previous query</a>.       </p>	 
+	 
+      <h3>Query ch6.42 Self-directing Actors  <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
+d399c7d8-b84f-428f-b55c-b6acde3bd6f2" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+	 <p>In the previous query, we saved our contructed crosswalk into DirectorActorCrosswalk.  In this query, we use that to find films that were directed by someone who also acted in the film.  We need the crosswalk, since linkedMDB keeps separate identities for directors and actors.  Notice that we don't need to understand how Query 6.41 determined that a director was "the same as" an actor, and indeed, we could draw on many sources for that information.  </p>
+
+      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=d399c7d8-b84f-428f-b55c-b6acde3bd6f2"></iframe>
       </div>
 
       <div >

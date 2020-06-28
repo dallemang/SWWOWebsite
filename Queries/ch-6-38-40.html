@@ -2,7 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-   <head><script type="text/javascript">var a=new Date,b=a.getUTCHours();if(0==a.getUTCMonth()&&2012==a.getUTCFullYear()&&((18==a.getUTCDate()&&13<=b)||(19==a.getUTCDate()&&0>=b)))window.location="http://sopastrike.com/strike";</script>
+  <head  profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon" 
+      type="image/png" 
+      href="../images/favicon.ico"/>
+    <script type="text/javascript">var a=new Date,b=a.getUTCHours();if(0==a.getUTCMonth()&&2012==a.getUTCFullYear()&&((18==a.getUTCDate()&&13<=b)||(19==a.getUTCDate()&&0>=b)))window.location="http://sopastrike.com/strike";</script>
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
        <title>
            Semantic Web for the Working Ontologist
@@ -16,18 +20,7 @@
     <meta property="og:image" content="http://covers.elsevier.com/165_FW/9780123735560.jpg"/>
     <meta property="og:site_name" content="Working Ontologist"/>
     <meta property="fb:admins" content="682372812"/>
-	<style type="text/css" id="wp-custom-css">
 
-	  .qdiv{
-	      width: 800
-	  }
-	  .centered{
-	      display: block;   margin-left: auto;   margin-right: auto;
-	  }
-	  .display_none{
-              display:none;
-	  }
-		</style>
    </head>
    <body>
      <div id="header_links">
@@ -37,10 +30,11 @@
 <p>These queries use a resource called the linkedMDB, the Linked Movie Database.  It is a simple translation of a relational database about movies into RDF.  It hasn't been maintained for a while, but it is still good for making examples.  Because it was a relational database, it has some interseting foibles that we explore in these queries. </p>
        <p>The data for these queries can be dowloaded from <a href="https://query.data.world/s/2p67sbeleevvx6gqw7gmkiumseqd3c">linkedMDB.ttl</a>       </p>
     <div class="qdiv">
-      <h3>Query ch6.38 Matching Directors and Actors</h3>
+      <h3>Query ch6.38 Matching Directors and Actors  <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
+2cfcbd39-c7f0-4956-a848-710def4c4161" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
       <p>Sometimes actors are also directors.  Since the linkedMDB came from a database with separate tables for Director and Actor, these aren't obviously the same entity.  We can find out that they are the same by using their foaf:page.</p>
-      <p>In this query, we filter the data to match the output shown in the book; feel free to remove those lines to see all the output. </p>
-      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=2cfcbd39-c7f0-4956-a848-710def4c4161"></iframe>
+      <p>In this query, we filter the data to match the output shown in the book; feel free to remove those lines to see all the output.  This query will find all of the matching people in the source data, and create skos:exactMatch triples for them.</p>
+      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=2cfcbd39-c7f0-4956-a848-710def4c4161"></iframe>
       </div>
 
       <div >
@@ -50,8 +44,10 @@
       </div>
     </div>
     <div class="qdiv">
-      <h3>Query ch6.39 Matching Directors vs Actors</h3>
-      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=296404dc-bead-48df-beca-7230d49c217d"></iframe>
+      <h3>Query ch6.39 Matching Directors vs Actors  <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
+296404dc-bead-48df-beca-7230d49c217d" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>This is just like the previous query, but filters out the dopey triples of the form ?x skos:exactMatch ?x .  Just like the one above, feel free to comment out the filters and get matches for all the actors/directors. </p>
+      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=296404dc-bead-48df-beca-7230d49c217d"></iframe>
       </div>
 
       <div >
@@ -61,8 +57,12 @@
       </div>
     </div>
     <div class="qdiv">
-      <h3>Query ch6.40 Matching Directors to Actors 1-1</h3>
-      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=6b1edc1c-0a04-4987-b10b-fac53a24232b"></iframe>
+      <h3>Query ch6.40 Matching Directors to Actors 1-1  <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
+6b1edc1c-0a04-4987-b10b-fac53a24232b" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>The most advanced of the three queries, this one suppresses the duplicates of the form ?a skos:exactMatch ?b . and ?b skos:exactMatch ?a . </p>
+
+      <p>The output from this query is saved as "DirectorActorCrosswalk", and is used in later queries.</p>
+      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=6b1edc1c-0a04-4987-b10b-fac53a24232b"></iframe>
       </div>
 
       <div >

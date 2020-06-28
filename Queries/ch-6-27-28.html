@@ -2,7 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-   <head><script type="text/javascript">var a=new Date,b=a.getUTCHours();if(0==a.getUTCMonth()&&2012==a.getUTCFullYear()&&((18==a.getUTCDate()&&13<=b)||(19==a.getUTCDate()&&0>=b)))window.location="http://sopastrike.com/strike";</script>
+  <head  profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon" 
+      type="image/png" 
+      href="../images/favicon.ico"/>
+    <script type="text/javascript">var a=new Date,b=a.getUTCHours();if(0==a.getUTCMonth()&&2012==a.getUTCFullYear()&&((18==a.getUTCDate()&&13<=b)||(19==a.getUTCDate()&&0>=b)))window.location="http://sopastrike.com/strike";</script>
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
        <title>
            Semantic Web for the Working Ontologist
@@ -16,18 +20,7 @@
     <meta property="og:image" content="http://covers.elsevier.com/165_FW/9780123735560.jpg"/>
     <meta property="og:site_name" content="Working Ontologist"/>
     <meta property="fb:admins" content="682372812"/>
-	<style type="text/css" id="wp-custom-css">
 
-	  .qdiv{
-	      width: 800
-	  }
-	  .centered{
-	      display: block;   margin-left: auto;   margin-right: auto;
-	  }
-	  .display_none{
-              display:none;
-	  }
-		</style>
    </head>
    <body>
      <div id="header_links">
@@ -38,8 +31,10 @@
        <p>You can download the dataset for these queries <a href="https://query.data.world/s/pa2bmap5w2pwnn5xzniwuiwtzfoye3">JamesDean.ttl.</a> and <a href="https://query.data.world/s/cymx7lkdwdryzseco2sgmw43uhqn4i">Family.ttl</a> </p>
 
        <p>You can cross-reference the queries to the book by query number or name.</p>
-      <h3>Query ch6.27 Directors are people who direct movies</h3>
-      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=a3b38d85-f7dc-4287-b70a-5ae9063ccc72"></iframe>
+      <h3>Query ch6.27 Directors are people who direct movies  <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
+a3b38d85-f7dc-4287-b70a-5ae9063ccc72" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>The resource <i>jd6:Director</i> wasn't defined in the input data; we are defining it here.  This query doesn't give it a type; is it a class?  A property?  An individual member of some class we already know about (jd6:Woman,, jd6:Man, etc.)?  This query is a bit deficient in this regard. </p>
+      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=a3b38d85-f7dc-4287-b70a-5ae9063ccc72"></iframe>
       </div>
 
       <div >
@@ -49,8 +44,10 @@
       </div>
     </div>
     <div class="qdiv">
-      <h3>Query ch6.28 A man is his father's son</h3>
-      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[0].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=cd9cacc7-4cf9-4b2a-a518-0ef5d02b8426"></iframe>
+      <h3>Query ch6.28 A man is his father's son  <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
+cd9cacc7-4cf9-4b2a-a518-0ef5d02b8426" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>In this case, family:hasSon is already defined as part of the input data.  We're just giving more information about how we think it should be used. </p>
+      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-6-example-queries/query?queryid=cd9cacc7-4cf9-4b2a-a518-0ef5d02b8426"></iframe>
       </div>
 
       <div >
