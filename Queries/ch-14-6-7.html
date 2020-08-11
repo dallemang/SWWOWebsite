@@ -24,13 +24,22 @@
    </head>
    <body>
      <div id="header_links">
-       <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h1>
+       <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">The Queries</a></h1>
      </div>
      <div id="blurb_and_news" >
-
-    <div class="qdiv">
-      <h3>Query ch14.6 Combining services for comparison    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
-2672ed71-d6a6-493b-8c37-0b8714d082fb" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+       <p>In these queries, we combine <a href="schema.org">schema.org</a> and <a href="qudt.org">QUDT</a> to work out the best price for a timed service. The first query gets the price, amount and units for a massage; the second converts the price to common time units for comparison.</p>
+       <p>These queries use data from the following sources:</p>
+       <ul>
+	 <li><a href="https://query.data.world/s/gvnhxdwiaqgen3dr2qjr3klp2bp6f5">Plush.ttl</a></li>
+	 <li><a href="https://query.data.world/s/7uvgosamptoxxl4e2pddincbfly6lq">SCHEMA_QUDT-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/2dlf3kw4nkmjyyagfptax7ywxxavz3">VOCAB_QUDT-UNITS-BASE-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/pfrxsmk5jitk32cuaypijcok2kj5d4">VOCAB_QUDT-UNITS-SPACE-AND-TIME-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/4srhwvtxar76uscwysgnyi54tbf5ov">VOCAB_QUDT-UNITS-THERMODYNAMICS-v2.0.ttl</a></li>
+       </ul>
+       
+	 <div class="qdiv">
+      <h3>Query ch14.6 Combining services for comparison    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=2672ed71-d6a6-493b-8c37-0b8714d082fb" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>First, we look up the services that Plush offers, includingi the price, duration and units.  Since the Plush markup uses the QUDT unit identifiers (since it is worthwhile to use a standard for such things), we don't need to do any further conversions to find the units. </p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=2672ed71-d6a6-493b-8c37-0b8714d082fb"></iframe>
       </div>
 
@@ -44,8 +53,9 @@
 
 
         <div class="qdiv">
-      <h3>Query ch14.7 Price comparison of two services    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
-13bdb872-a94c-4ae9-9f7d-925e6f62d929" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <h3>Query ch14.7 Price comparison of two services    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=13bdb872-a94c-4ae9-9f7d-925e6f62d929" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>Now we can use QUDT to convert hours to minutes, and do a similar conversion on the price, working out a cost per minute for each massage.  In the text, we use a SHACL function to do this conversion.  data.world does not (yet) support SHACL functions, so we just splice in the appropriate QUDT query instead. </p>
+      <p>The result is the price per minute of each service, making price comparison valid. </p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=13bdb872-a94c-4ae9-9f7d-925e6f62d929"></iframe>
       </div>
 

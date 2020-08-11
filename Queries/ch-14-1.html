@@ -24,14 +24,23 @@
    </head>
    <body>
      <div id="header_links">
-       <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h1>
+       <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">The Queries</a></h1>
      </div>
      <div id="blurb_and_news" >
-
+       <p>QUDT provides a number of capabilities for managing units.  Probably the simplest one is to ask whether two units are commensurate (do they measure the same quantity).  The first query has the specific units written right in the query; but a query like this should probably be parameterized.  The second query allows the measured units to be inputs to the query. </p>
+       <p>The data sets for these queries can be downloaded here:</p>
+       <ul>
+	 <li><a href="https://query.data.world/s/2dlf3kw4nkmjyyagfptax7ywxxavz3">VOCAB_QUDT-UNITS-BASE-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/4srhwvtxar76uscwysgnyi54tbf5ov">VOCAB_QUDT-UNITS-THERMODYNAMICS-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/7uvgosamptoxxl4e2pddincbfly6lq">SCHEMA_QUDT-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/2dlf3kw4nkmjyyagfptax7ywxxavz3">VOCAB_QUDT-UNITS-BASE-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/pfrxsmk5jitk32cuaypijcok2kj5d4">VOCAB_QUDT-UNITS-SPACE-AND-TIME-v2.0.ttl</a></li>
+       </ul>
     <div class="qdiv">
-      <h3>Figure ch14.1 x    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
-f0b02d71-da31-4aa1-8c56-9c4d098faed5" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
-      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=f0b02d71-da31-4aa1-8c56-9c4d098faed5"></iframe>
+      <h3>Query ch14.1 Finding commensurate units    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-14-example-queries/workspace/query?queryid=1be028d2-0971-4de5-8686-22424684f803" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>This query asks that question for Meters and Feet (in the comments, Joules and Thermal Calories).</p>
+      <p>If you want to use this query for other units, you can edit the query, and put them in.  You'll need to know the QUDT identifiers for the units.</p>
+      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=1be028d2-0971-4de5-8686-22424684f803"></iframe>
       </div>
 
       <div >
@@ -39,6 +48,22 @@ f0b02d71-da31-4aa1-8c56-9c4d098faed5" ><img alt="visit query on data.world" src=
 	  class="centered"
 	  src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
       </div>
-</div>    </div>
-  </body>
-</html>
+    </div>
+
+    <div class="qdiv">
+      <h3>Figure ch14.1 Finding commensurate units (parameterized)     <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-14-example-queries/workspace/query?queryid=a8d1d45c-2498-4649-a66b-c4d8c7758e82" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>This query is the same as the previous one, but with parameters for the units. It also looks up the units by label, so you don't need to know the QUDT name (just the label).  This uses a parametrization facility of data.world to let you fill in values for variables before running the query.  </p>
+      <div><iframe width="800" height="800"  onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=a8d1d45c-2498-4649-a66b-c4d8c7758e82&showTemplatePreview=true"></iframe>
+      </div>
+      
+      <div >
+	<img 
+	    class="centered"
+	    src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
+      </div>
+    </div>
+    
+     </div>
+   </body>
+ </html>
+ 

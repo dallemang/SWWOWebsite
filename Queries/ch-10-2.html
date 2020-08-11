@@ -20,15 +20,19 @@
     <meta property="og:image" content="http://covers.elsevier.com/165_FW/9780123735560.jpg"/>
     <meta property="og:site_name" content="Working Ontologist"/>
     <meta property="fb:admins" content="682372812"/>
-   </head>
+
+  </head>
    <body>
      <div id="header_links">
        <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">The Queries</a></h1>
      </div>
      <div id="blurb_and_news" >
-
+       <p>The data for this query can be downloaded at <a href="https://query.data.world/s/kcmuz43l35tbbwaavhmuflnysnsh4n">FHEORDF</a>. This query is just one of many classification queries that convert a flag (a 1 or 0 in a column in a spreadsheet) to a class in OWL. </p>
+       
     <div class="qdiv">
       <h3>Query ch10.2 Classify cases by tags    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-10-example-queries/workspace/query?queryid=4cb5c965-3d96-4085-83ea-5f6c2285788b" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>Each row represents an FHEA case; if there is a '1' in the column <i>number_of_filed_cases_with_a_disability_basis</i>, then this case is about discrimination with a bias against a disability.  This query changes this numeric indicator into membership in the class "Disability".   A case can be classified in more than one class; this query only looks for Disability bias cases. </p>
+
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-10-example-queries/query?queryid=4cb5c965-3d96-4085-83ea-5f6c2285788b"></iframe>
       </div>
 
@@ -38,6 +42,23 @@
 	  src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
       </div>
     </div>
+
+        <div class="qdiv">
+      <h3>Query ch10.2 Supplemental Classify cases by tags    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-10-example-queries/workspace/query?queryid=23ebea1c-9de4-4015-9d14-720ec7c7cbc3" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>This query isn't in the book; it is a UNION of all the queries of the form Query ch10.2, one for each classification.  This classifies all of the FHEA data into all of the classifications. </p>
+      <p>This is the query that is used to create the data set that other queries use going forward.</p>
+
+      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-10-example-queries/query?queryid=23ebea1c-9de4-4015-9d14-720ec7c7cbc3"></iframe>
+      </div>
+
+      <div >
+	<img 
+	  class="centered"
+	  src="http://workingontologist.org/wp/wp-content/uploads/2020/05/dwlogos.gif"/>
+      </div>
+	</div>
+
+	
      </div>
    </body>
 </html>

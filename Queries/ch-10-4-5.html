@@ -27,9 +27,20 @@
       <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">The Queries</a></h1>
     </div>
     <div id="blurb_and_news" >
+      <p>These queries make use of the county cross reference to organize cases by county.  As before, The datasets used in this query can be downloaded here:</p>
+       <ul>
+	 <li><a href="https://query.data.world/s/ep25je5cpqssmpzwsmfswoeh3evv6h">CC.ttl</a></li>
+	 <li><a href="https://query.data.world/s/224vofph67owa7fbyk4hjdac4fh5yo">FHEOMeta.ttl</a></li>
+	 <li><a href="https://query.data.world/s/hepcqy4hxtnz7u5i4qzxc7l4nzioc3">FHEORDF</a></li>
+	 <li><a href="https://query.data.world/s/5mjd7rxct3kl3smhorcatywfvwei6w">ClassificationOfReports</a>. This dataset is derived using the "Supplemental" query based on <a href="ch-10-2.html">Query ch10.2</a></li>
+       </ul>
+
+       
       <div class="qdiv">
 	<h3>Query ch10.4 Incidents at location    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-10-example-queries/workspace/query?queryid=
 2f2c8ee4-5e70-4128-890a-32fcbc45bb39" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+	<p>This query sorts the incidents by location, using the geographic information about counties from dbpedia (latitude, longitude), and reporting each case based on a location in the country.  The locations are approximate, since we only have county information for each one. </p>
+
 	<div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-10-example-queries/query?queryid=2f2c8ee4-5e70-4128-890a-32fcbc45bb39"></iframe>
 	</div>
 
@@ -41,8 +52,9 @@
       </div>
       <div class="qdiv">
 	<h3>Query ch10.5 Counting complaint types by location  <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-10-example-queries/workspace/query?queryid=
-47cc88aa-f01f-48f2-a592-7f63ab5c346d" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a>  <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-10-example-queries/workspace/query?queryid=
-47cc88aa-f01f-48f2-a592-7f63ab5c346d" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+47cc88aa-f01f-48f2-a592-7f63ab5c346d" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a> </h3>
+	<p>The previous query isn't very useful, since there is one result for each case, and there are thousands of cases.  This query aggregates the answers, counting the number of each type of case per county, and cross referencing that number to the approximate location. </p>
+	
 	<div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-10-example-queries/query?queryid=47cc88aa-f01f-48f2-a592-7f63ab5c346d"></iframe>
 	</div>
 

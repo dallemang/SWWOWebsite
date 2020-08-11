@@ -27,10 +27,18 @@
        <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">The Queries</a></h1>
      </div>
      <div id="blurb_and_news" >
+       <p>Following on from the last page, we take the next step to build up the dimensional analysis query. </p>
+       <p>Continuing with <i>f=ma</i> as an example, and building on the exercise from Query 14.10, we repeat the analysis for all relevant dimensions (mass, length, time).  If any of these fail to balance, then the formula fails.   Finally, we invert this result, to find the formulas that pass the dimensional analysis test.</p>
+       <p>The queries in this section are based on the following data sets:</p>
+       <ul>
+	 <li><a href="https://query.data.world/s/ejcfk5beegqul6e6crukzjrko3aawo">VOCAB_QUDT-DIMENSION-VECTORS-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/ueem45rze6wmi3ixrtkzngvgdk77ak">VOCAB_QUDT-QUANTITY-KINDS-SI-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/7uvgosamptoxxl4e2pddincbfly6lq">SCHEMA_QUDT-v2.0.ttl</a></li>	 
+       </ul>
 
     <div class="qdiv">
-      <h3>Query ch14.10 Total exponents in each dimension    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
-f0956a10-4be7-4320-8156-9cab78a198a0" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <h3>Query ch14.10 Total exponents in each dimension    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-14-example-queries/workspace/query?queryid=f0956a10-4be7-4320-8156-9cab78a198a0" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>Since you did the exercise at the end of Query 14-10, this should come as no surprise.  Using another VALUES definition, we iterate over all the dimensions we wish to analyze, and see the balance of the formula in each dimension.  Already at this point, we see that the formula balaces. </p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=f0956a10-4be7-4320-8156-9cab78a198a0"></iframe>
       </div>
 
@@ -43,7 +51,8 @@ f0956a10-4be7-4320-8156-9cab78a198a0" ><img alt="visit query on data.world" src=
 
 
     <div class="qdiv">
-      <h3>Query ch14.11 Is there an unbalanced dimension?    </h3>
+      <h3>Query ch14.11 Is there an unbalanced dimension?  <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-14-example-queries/workspace/query?queryid=b5795a72-efa2-4f2e-8968-0260f2144e92" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a>  </h3>
+      <p>A formula fails if any of the dimensions fail to balance. We aggregate with GROUP BY ... SUM, then filter with HAVING, to find the formulas that fail; that is, any of the dimensions fails. </p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=b5795a72-efa2-4f2e-8968-0260f2144e92"></iframe>
       </div>
 
@@ -57,9 +66,13 @@ f0956a10-4be7-4320-8156-9cab78a198a0" ><img alt="visit query on data.world" src=
 
 
         <div class="qdiv">
-      <h3>Query ch14.12 Verifying a formula with dimensional analysis   <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
-70fd5aaa-c0f7-40f2-89f5-d0d38ee390a5" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
-      <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=70fd5aaa-c0f7-40f2-89f5-d0d38ee390a5"></iframe>
+	  <h3>Query ch14.12 Verifying a formula with dimensional analysis   <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-14-example-queries/workspace/query?queryid=70fd5aaa-c0f7-40f2-89f5-d0d38ee390a5" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+	  <p>To pass dimensional analysis, we need to negate this result.  We do this by putting a FILTER NOT EXISTS around the whole thing.  This query returns TRUE if the formula passes, FALSE if it fails. </p>
+	  <p>A few things to think about: </p>
+	  <ol>
+	    <li>Why did we need to do the two steps, of checking ?formtotal!=0 (in Query 14.11), and then FILTER NOT EXISTS (in Query 14.12)?  Couldn't we have just said ?formtotal=0 in the first place?</li>
+	    <li>Think of another formula that you can check using this query.  How would you edit the query to put in a new formula? </li></ol>
+	  <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=70fd5aaa-c0f7-40f2-89f5-d0d38ee390a5"></iframe>
       </div>
 
       <div >

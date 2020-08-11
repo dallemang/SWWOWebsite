@@ -26,11 +26,20 @@
        <h1><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="../TheData/index.html">The Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">The Queries</a></h1>
      </div>
      <div id="blurb_and_news" >
-
+       <p>On the next few pages, we're going to build up a query for dimensional analysis, piece by piece.</p>
+       <p>We're going to use <i>f=ma</i> as an example.  For dimensional analysis, we need to work out, for each term in a formula, what its dimention is for the basic dimensions of QUDT, mass, length and time.  Then we need to test whether the formula is balanced in each dimension; that is, the coefficient on the left side matches the coefficient on the right. </p>
+       <p>On this page, we break down complex quantities into their coefficients for each dimension in QUDT (this page does it for the Time dimension; the computation is the same for other dimensions).  Then we come up with a way to indicate if a term is on the left or right hand side of a formula, and add up the balanced coefficient. </p>
+       <p>The queries in this section are based on the following data sets:</p>
+       <ul>
+	 <li><a href="https://query.data.world/s/ejcfk5beegqul6e6crukzjrko3aawo">VOCAB_QUDT-DIMENSION-VECTORS-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/ueem45rze6wmi3ixrtkzngvgdk77ak">VOCAB_QUDT-QUANTITY-KINDS-SI-v2.0.ttl</a></li>
+	 <li><a href="https://query.data.world/s/7uvgosamptoxxl4e2pddincbfly6lq">SCHEMA_QUDT-v2.0.ttl</a></li>	 
+       </ul>
 
         <div class="qdiv">
-      <h3>Query ch14.8 Time dimension for each term    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
-43552db6-4bd2-45bb-ad8b-c03302f9f02d" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <h3>Query ch14.8 Time dimension for each term    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-14-example-queries/workspace/query?queryid=43552db6-4bd2-45bb-ad8b-c03302f9f02d" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <p>This query just works on the time dimension.  </p>
+      <p>The quanties we are intersted in for <i>f=ma</i> are force, mass and acceleration.  In QUDT, the quantity for force is  qudt:DIM_SI-mkgs-2; the quantity for mass is qudt:DIM_SI-M; and the quantity for acceleration is qudt:DIM_SI-ms-2.  In this query, we get the coefficient of each of these quantities in the Time dimension. </p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=43552db6-4bd2-45bb-ad8b-c03302f9f02d"></iframe>
       </div>
 
@@ -43,8 +52,11 @@
 
 
 	    <div class="qdiv">
-      <h3>Query ch14.9 Balanced sum of Time exponents    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-6-example-queries/workspace/query?queryid=
-3be56ad6-314b-4fcd-9b7f-cb8fcd0e8ce5" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+      <h3>Query ch14.9 Balanced sum of Time exponents    <a target="querypane" title="visit query on data.world" href="https://data.world/swwo/chapter-14-example-queries/workspace/query?queryid=3be56ad6-314b-4fcd-9b7f-cb8fcd0e8ce5" ><img alt="visit query on data.world" src="../images/dw.jpg"/></a></h3>
+
+      <p>In this query, we make clever use of the VALUES keyword to specify, for each quantity, whether it is on the left or right side of a formula.  ?term and ?side are bound together, to a quantity (like Mass) and a side of the question (left or right).  Here we have mass and acceleration on the left, and force on the right (so we're really checking <i>ma=f</i>.</p>
+      <p>Once we have the time exponents for each quantity, we add up everything on the left and subtract everything on the right.  A value of 0 means that the formula balances in this dimension. This is the case for Time in this formula. </p>
+      <p>Before moving on to Query 14-10, I suggest you update this query to work in the dimensions of Mass and then of Length, to see how it needs to change for different dimensions.  Does it balance in every dimension?</p>
       <div><iframe width="800" height="500" class="display_none" onload='this.parentNode.parentNode.getElementsByTagName("img")[1].parentNode.classList.add("display_none");this.classList.remove("display_none");' scrolling="no" src="https://data.world/embed/swwo/chapter-14-example-queries/query?queryid=3be56ad6-314b-4fcd-9b7f-cb8fcd0e8ce5"></iframe>
       </div>
 
