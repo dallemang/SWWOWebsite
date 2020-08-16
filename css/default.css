@@ -80,7 +80,7 @@ td {
 }
 
 #header_links {
-    background: url('../images/check.png') repeat;
+    background: url('../images/check3.png') repeat;
     padding: .4em;
     text-align: center;
     border: 1px solid white;
@@ -98,7 +98,7 @@ td {
 #header_links h1 {
     margin: 0;
     padding: 0;
-    color: #61363d;
+    color: #f5b085;
     text-transform: uppercase;
     font-family: Arial, sans-serif;
     font-weight: bold;
@@ -136,7 +136,7 @@ td {
 }
 
 #header_links a {
-    color: #081c41;
+    color: #f5b085;
     font-size: 60%;
     text-transform: lowercase;
 }
