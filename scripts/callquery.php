@@ -47,7 +47,7 @@ if ($themime=="text/html" or $themime=="text/plain") {
    
 $data = '{"parameters": {"resource": "' . $_SERVER["SCRIPT_URI"] . '"}}';
 
-
+$q = $_GET['q']
 
 $headers= array('Authorization: Bearer ' .  file_get_contents ('../../etc/champ') ,
                 'Content-Type: application/json',
@@ -58,9 +58,8 @@ $headers= array('Authorization: Bearer ' .  file_get_contents ('../../etc/champ'
 
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.data.world/v0/queries/c432b0a3-b5bf-4b8f-9a8d-3a83e2f201ab/results");
+curl_setopt($ch, CURLOPT_URL, "https://api.data.world/v0/sql/${ORGANIZATION}/${DATASET}?query=".$q);
 curl_setopt($ch, CURLOPT_POST,1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -68,11 +67,6 @@ $output = curl_exec($ch);
 curl_close($ch);
 
 
-if ($themime=="text/html" or $themime=="text/plain") {
-    echo "<pre>";
-    echo htmlspecialchars($output, ENT_COMPAT | ENT_HTML5, 'UTF-8');
-    echo "</pre>";
-} else {
     echo $output;
-}
+
 ?>
