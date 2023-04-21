@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization of Benefited Hectares</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/axios@0.21.4/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+    <script src="https://unpkg.com/polygon-clipping@0.15.3/dist/polygon-clipping.umd.js"></script>
+    <style>
+
+
+.map-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  justify-items: start;
+    margin-left: 20%; /* Add a left margin to the grid */
+}
+
+.map {
+  height: 450px; /* 75% of the original height */
+  width: 750px; /* 75% of the original width */
+}
+
+
+
+.map-container {
+  display: flex;
+  align-items: flex-start;
+    justify-content: left;
+  margin-left: 5%;
+}
+
+
+
+.legend {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+    border-radius: 5px;
+  font-size: 0.75rem; /* Make the text smaller */    
+}
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+    .legend div {
+	display: flex;
+	align-items: center;
+	margin-bottom: 4px;
+    }
+    .legend div span {
+	display: inline-block;
+	width: 15px; /* Make the legend color box smaller */
+	height: 15px;
+	margin-right: 4px;
+    }
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="map-display">
+  <h3>Map 1 Heading</h3>
+  <div class="map-container">
+    <div id="map1" class="map"></div>
+    <div class="legend" id="legend1"></div>
+  </div>
+  <div class="caption" style="text-align: center; margin-top: 10px;">Caption for Map 1</div>
+</div>
+
+<div class="map-display">
+  <h3>Map 2 Heading</h3>
+  <div class="map-container">
+    <div id="map2" class="map"></div>
+    <div class="legend" id="legend2"></div>
+  </div>
+  <div class="caption" style="text-align: center; margin-top: 10px;">Caption for Map 2</div>
+</div>
+
+
+  <script>
+    
+function getLongestArray(coordinates) {
+    if (!Array.isArray(coordinates) || coordinates.length === 0) {
+	return [];
+    }
+    
+    let longestArray = coordinates[0][0];
+    
+    for (let i = 1; i < coordinates.length; i++) {
+	if (coordinates[i][0].length > longestArray.length) {
+	    longestArray = coordinates[i][0];
+	}
+    }
+    
+    return [longestArray];
+}
+
+function splitGeometry(geometry) {
+    const antimeridian = turf.lineString([[-180, -90], [-180, 90], [180, 90], [180, -90]]);
+    
+    function splitPolygon1(polygon) {
+	const antimeridian = turf.lineString([[-180, -90], [-180, 90], [180, 90], [180, -90]]);
+	const kinks = turf.kinks(polygon);
+	let splitPolygons = [];
+	
+	if (kinks.features.length === 0) {
+	    return [polygon];
+	}
+	
+	kinks.features.forEach(kink => {
+	    const nearestPointOnLine = turf.nearestPointOnLine(antimeridian, kink);
+	    const splitLine = turf.lineString([kink.geometry.coordinates, nearestPointOnLine.geometry.coordinates]);
+	    const lineBbox = turf.bbox(splitLine);
+	    
+	    polygon.geometry.coordinates.forEach(ring => {
+		try {
+		    const clipped = polygonClipping.intersection([[ring]], [lineBbox]);
+		    clipped.forEach(clippedPolygon => {
+			splitPolygons.push(turf.polygon(clippedPolygon));
+		    });
+		} catch (err) {
+		    console.error('Error while clipping polygon:', err);
+		}
+	    });
+	});
+	
+	return splitPolygons;
+    }
+    
+    
+    function splitPolygon(feature) {
+	if (!feature.geometry) {
+	    console.error('Invalid feature:', feature);
+	    return [];
+	}
+
+	if (feature.geometry.type === 'MultiPolygon') {
+	    const largestPolygon = feature.geometry.coordinates.reduce((maxPolygon, currentPolygon) => {
+		const maxArea = turf.area(turf.polygon(maxPolygon));
+		const currentArea = turf.area(turf.polygon(currentPolygon));
+		return currentArea > maxArea ? currentPolygon : maxPolygon;
+	    });
+
+	    return [{
+		...feature,
+		geometry: {
+		    type: 'Polygon',
+		    coordinates: largestPolygon,
+		},
+	    }];
+	}
+
+	return [feature];
+    }
+
+
+    if (geometry.type === 'Polygon') {
+	return splitPolygon1(geometry);
+    } else if (geometry.type === 'MultiPolygon') {
+	let splitMultiPolygons = [];
+	geometry.coordinates.forEach(coords => {
+	    const polygon = turf.polygon(coords);
+	    const splitPolygons = splitPolygon1(polygon);
+	    splitMultiPolygons = splitMultiPolygons.concat(splitPolygons.map(p => p.geometry.coordinates));
+	});
+	return turf.multiPolygon(splitMultiPolygons);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+    const API_KEY = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhbGxlbWFuZyIsImlzcyI6ImFnZW50OmRhbGxlbWFuZzo6ODM3OGNmYWEtZDE0My00NDUyLTk4N2EtOWU0ZTYzY2FkOGQzIiwiaWF0IjoxNjczMzAxNzA5LCJyb2xlIjpbInN1cHBvcnRfdGVhbSIsInVzZXJfYXBpX3JlYWQiLCJ1c2VyX2FwaV93cml0ZSJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWUsInNhbWwiOnsic3BhcmtsZXNxdWFkIjotMX19.L-6XfGWf2JWjARZ-TaOr9B7paMTkFlQndDDi8ThaOLefTUDJJ4fN2vsd-sS92loT7rtmsoGZrpvammTlqEhMGA';
+    const ORGANIZATION = 'syngentagoodgrowthplan';
+    const DATASET = 'good-growth-plan-open-data';
+    const SPREADSHEET_NAME = 'syt_ggp_c2soil_data_2021_0';
+
+    async function fetchData() {
+        const url = `https://api.data.world/v0/sql/${ORGANIZATION}/${DATASET}?query=SELECT%20country,%20SUM(benefitedhectares)%20as%20sum_benefitedhectares%20FROM%20${SPREADSHEET_NAME}%20GROUP%20BY%20country`;
+        const options = {
+	    method: 'GET',
+	    headers: {
+                'Authorization': `Bearer ${API_KEY}`,
+                'Accept': 'application/json'
+	    }
+        };
+
+        try {
+	    const response = await axios.get(url, options);
+	    return response.data;
+        } catch (error) {
+	    console.error('Error fetching data:', error);
+	    return [];
+        }
+    }
+
+    async function createWorldMap(containerId, legendId) {
+	const data = await fetchData();
+	const dataByCountry = data.reduce((obj, item) => {
+	    obj[item.country] = item.sum_benefitedhectares;
+	    return obj;
+	}, {});
+
+
+	const southWestB = L.latLng(-90, -180);
+	const northEastB = L.latLng(90, 180);
+	const bounds = L.latLngBounds(southWestB, northEastB);
+	
+	const map = L.map(containerId, {
+	    center: [20, 0],
+	    zoom: 2,
+	    maxBounds: bounds,
+	    maxBoundsViscosity: 1.0
+	});
+	
+	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	    noWrap: true, bounds: bounds
+	}).addTo(map);
+
+	// ... (getColor, style, onEachFeature functions as before) ...
+	const colors = [
+	    '#fef0d9',
+	    '#fee6ce',
+	    '#fdd49e',
+	    '#fdbb84',
+	    '#fd8d3c',
+	    '#fdae6b',
+	    '#fd8d3c',
+	    '#f16913',
+	    '#d94801',
+	    '#a63603',
+	    '#7f2704',
+	    '#d9f0a3',
+	    '#addd8e',
+	    '#78c679',
+	    '#41ab5d',
+	    '#31a354',
+	    '#238443',
+	    '#006837',
+	    '#015c29',
+	    '#00441b'
+	];
+
+	const minValue = Math.min(...Object.values(dataByCountry));
+	const maxValue = Math.max(...Object.values(dataByCountry));
+	const logMinValue = Math.log(minValue);
+	const logMaxValue = Math.log(maxValue);
+	const range = logMaxValue - logMinValue;
+	const step = range / colors.length;
+	
+	const getColor = value => {
+	    
+	    
+	    for (let i = 0; i < colors.length; i++) {
+		if (value == 0) {
+		    return '#ffffff';
+		}
+		const logValue = Math.log(value);
+		if (logValue < logMinValue + step * (i + 1)) {
+		    return colors[i];
+		}
+	    }
+	    
+	    return colors[colors.length - 1];
+	    
+	};
+
+	const style = feature => {
+	    const countryCode = feature.properties.name;
+	    
+	    const value = dataByCountry[countryCode] || 0;
+	    return {
+		fillColor: getColor(value),
+		weight: 1,
+		opacity: 1,
+		color: 'black',
+		fillOpacity: 0.7
+	    };
+	};
+	
+	const onEachFeature = (feature, layer) => {
+	    layer.on({
+		mouseover: e => {
+		    const layer = e.target;
+		    layer.setStyle({ weight: 2, color: '#666' });
+		    layer.openPopup();
+		},
+		mouseout: e => {
+		    const layer = e.target;
+		    layer.setStyle({ weight: 1, color: 'black' });
+		    layer.closePopup();
+		}
+	    });
+	    if (feature.properties && feature.properties.name) {
+		const countryCode = feature.properties.name;
+		const value = dataByCountry[countryCode] || 0;
+		layer.bindPopup(`<strong>${feature.properties.name}</strong><br/>Benefited Hectares: ${value}`);
+	    }
+	};
+	
+	// ... (getColor, style, onEachFeature functions as before) ...
+	// ... (getColor, style, onEachFeature functions as before) ...
+	
+	const topojsonData = await axios.get('https://unpkg.com/world-atlas/countries-110m.json');
+	const geojsonData = topojson.feature(topojsonData.data, topojsonData.data.objects.countries);
+	//    console.log(geojsonData);
+	const southWest = [-170, -60];
+	const northEast = [170, 85];
+	const bboxPolygon = turf.bboxPolygon([southWest[0], southWest[1], northEast[0], northEast[1]]);
+	
+	geojsonData.features.forEach(feature => {
+	    const coords = (feature.geometry.type === "Polygon")
+		  ? feature.geometry.coordinates
+		  : getLongestArray(feature.geometry.coordinates);
+	    const ncoords = [coords[0].map(coord => {
+		return [ coord[0]<-165 ? 179.0 : coord[0],
+			 coord[1]];
+	    })];
+	    const clippedFeature = turf.bboxClip({
+		type: "Feature",
+		geometry: { type: "Polygon", coordinates: ncoords }
+	    }, bboxPolygon);
+	    const newFeature = {
+		type: "Feature",
+		properties: feature.properties,
+		geometry: { type: "Polygon", coordinates: clippedFeature.geometry.coordinates }
+	    };
+	    
+	    L.geoJSON(newFeature, { style, onEachFeature }).addTo(map);
+	});
+	
+	
+	const legend = document.getElementById(legendId);
+	colors.forEach((color, index) => {
+	    const minValue = Math.exp(logMinValue + step * index);
+	    const maxValue = Math.exp(logMinValue + step * (index + 1));
+	    
+	    const range = minValue.toFixed(2) + " - " + maxValue.toFixed(2);
+	    const legendItem = document.createElement("div");
+	    legendItem.innerHTML = `<span style="background-color:${color}"></span> ${range}`;
+	    legend.appendChild(legendItem);
+	});
+	
+    }
+    
+
+  // Wrap the existing code inside an async function
+
+    await createWorldMap("map1","legend1");
+    await createWorldMap("map2","legend2");
+
+    // Add more createWorldMap calls for more maps
+  });
+
+
+// Your JavaScript code will go here
+</script>
+    </body>
+    </html>
