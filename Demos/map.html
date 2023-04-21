@@ -66,8 +66,14 @@
 </head>
 <body>
 
+    <H1>Syngenta soil data implementation visualization</H1>
+In Syngenta's  Good Growth Plan, we commit to enhance biodiversity and soil health on 3 million hectares of farmland every year.
+<p/>
+The Soil dataset shows aggregated hectares of farmland reported since 2013 that benefit from soil conservation practices established in collaboration with Syngenta. The dataset also includes a description of the project objectives. The number of hectares of benefited farmland are tracked locally through in-field assessments, documented, and reported by project managers.    <p/>
+The following map shows the hectares of land in each country on which good soil management practices were introduced. <p/>
+Source: <a href="http://opendata.syngenta.agroknow.com/dataset/soil-data-2021">Soil Data 2021</a>
 <div class="map-display">
-  <h3>Map 1 Heading</h3>
+  <h3>Implemented Hectares per country</h3>
   <div class="map-container">
     <div id="map1" class="map"></div>
     <div class="legend" id="legend1"></div>
@@ -75,13 +81,26 @@
   <div class="caption" style="text-align: center; margin-top: 10px;">Caption for Map 1</div>
 </div>
 
+The following map shows the hectares of land in each country on which good soil management practices were introduced. <p/>
+
 <div class="map-display">
-  <h3>Map 2 Heading</h3>
+  <h3>Benefited Hectares per country</h3>
   <div class="map-container">
     <div id="map2" class="map"></div>
     <div class="legend" id="legend2"></div>
   </div>
-  <div class="caption" style="text-align: center; margin-top: 10px;">Caption for Map 2</div>
+  <div class="caption" style="text-align: center; margin-top: 10px;">Implemented hectares</div>
+</div>
+
+
+The following map shows how many more hectares were implemented than benefited (sort of the effectiveness of the measures).  Negative numbers mean that more hectares benefited than were implemnted. <p/>
+<div class="map-display">
+  <h3>Benefited Hectares per country</h3>
+  <div class="map-container">
+    <div id="map3" class="map"></div>
+    <div class="legend" id="legend3"></div>
+  </div>
+  <div class="caption" style="text-align: center; margin-top: 10px;">Benefited hectares</div>
 </div>
 
 
@@ -353,8 +372,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   // Wrap the existing code inside an async function
 
-    await createWorldMap("map1","legend1", "SELECT%20country,%20SUM(benefitedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
-    await createWorldMap("map2","legend2", "SELECT%20country,%20SUM(implementedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
+    await createWorldMap("map1","legend1", "SELECT%20country,%20SUM(implementedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
+    await createWorldMap("map2","legend2", "SELECT%20country,%20SUM(benefitedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
+    await createWorldMap("map3","legend3", "SELECT%20country,%20SUM(implementedhectares)-SUM(benefitedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
 
     // Add more createWorldMap calls for more maps
   });
