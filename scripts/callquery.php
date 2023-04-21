@@ -47,25 +47,32 @@ if ($themime=="text/html" or $themime=="text/plain") {
    
 $data = '{"parameters": {"resource": "' . $_SERVER["SCRIPT_URI"] . '"}}';
 
-$q = $_GET['q']
+$q = $_GET['q'];
+$org = $_GET['org'];
+$dataset = $_GET['dataset'];
+$file = $_GET['file'];
 
 $headers= array('Authorization: Bearer ' .  file_get_contents ('../../etc/champ') ,
-                'Content-Type: application/json',
-                'Accept: ' . $othermime
+                'Accept: application/json' 
                 );
 
 
+$call="https://api.data.world/v0/sql/".$org."/".$dataset."?query=".rawurlencode($q);
 
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.data.world/v0/sql/${ORGANIZATION}/${DATASET}?query=".$q);
-curl_setopt($ch, CURLOPT_POST,1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_URL, $call);
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $output = curl_exec($ch);
-curl_close($ch);
 
+if (curl_errno($ch)) {
+    $error_msg = curl_error($ch);
+}
+curl_close($ch);
 
     echo $output;
 

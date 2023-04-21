@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualization of Benefited Hectares</title>
+    <title>Visualization of Soil Data Efforts</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/axios@0.21.4/dist/axios.min.js"></script>
@@ -176,17 +176,17 @@ function splitGeometry(geometry) {
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-    const API_KEY = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhbGxlbWFuZyIsImlzcyI6ImFnZW50OmRhbGxlbWFuZzo6ODM3OGNmYWEtZDE0My00NDUyLTk4N2EtOWU0ZTYzY2FkOGQzIiwiaWF0IjoxNjczMzAxNzA5LCJyb2xlIjpbInN1cHBvcnRfdGVhbSIsInVzZXJfYXBpX3JlYWQiLCJ1c2VyX2FwaV93cml0ZSJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWUsInNhbWwiOnsic3BhcmtsZXNxdWFkIjotMX19.L-6XfGWf2JWjARZ-TaOr9B7paMTkFlQndDDi8ThaOLefTUDJJ4fN2vsd-sS92loT7rtmsoGZrpvammTlqEhMGA';
+
     const ORGANIZATION = 'syngentagoodgrowthplan';
     const DATASET = 'good-growth-plan-open-data';
     const SPREADSHEET_NAME = 'syt_ggp_c2soil_data_2021_0';
 
-    async function fetchData() {
-        const url = `https://api.data.world/v0/sql/${ORGANIZATION}/${DATASET}?query=SELECT%20country,%20SUM(benefitedhectares)%20as%20sum_benefitedhectares%20FROM%20${SPREADSHEET_NAME}%20GROUP%20BY%20country`;
-        const options = {
+    async function fetchData(query) {
+	const url = `https://www.workingontologist.org/scripts/callquery.php?q=${query}&org=${ORGANIZATION}&dataset=${DATASET}&file=${SPREADSHEET_NAME}`
+	const options = {
 	    method: 'GET',
 	    headers: {
-                'Authorization': `Bearer ${API_KEY}`,
+
                 'Accept': 'application/json'
 	    }
         };
@@ -200,10 +200,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    async function createWorldMap(containerId, legendId) {
-	const data = await fetchData();
+    async function createWorldMap(containerId, legendId, query) {
+	const data = await fetchData(query);
 	const dataByCountry = data.reduce((obj, item) => {
-	    obj[item.country] = item.sum_benefitedhectares;
+	    obj[item.country] = item.sum_affectedhectares;
 	    return obj;
 	}, {});
 
@@ -353,8 +353,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   // Wrap the existing code inside an async function
 
-    await createWorldMap("map1","legend1");
-    await createWorldMap("map2","legend2");
+    await createWorldMap("map1","legend1", "SELECT%20country,%20SUM(benefitedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
+    await createWorldMap("map2","legend2", "SELECT%20country,%20SUM(implementedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
 
     // Add more createWorldMap calls for more maps
   });
