@@ -269,8 +269,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 	const minValue = Math.min(...Object.values(dataByCountry));
 	const maxValue = Math.max(...Object.values(dataByCountry));
-	const logMinValue = Math.log(minValue);
-	const logMaxValue = Math.log(maxValue);
+        const offset = (minValue < 0) ? (1-minValue) : 0;
+	const logMinValue = Math.log(minValue+offset);
+	const logMaxValue = Math.log(maxValue+offset);
 	const range = logMaxValue - logMinValue;
 	const step = range / colors.length;
 	
@@ -281,7 +282,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 		if (value == 0) {
 		    return '#ffffff';
 		}
-		const logValue = Math.log(value);
+		const logValue = Math.log(value+offset);
 		if (logValue < logMinValue + step * (i + 1)) {
 		    return colors[i];
 		}
