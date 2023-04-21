@@ -92,7 +92,7 @@ The following map shows the hectares of land in each country on which good soil 
   <div class="caption" style="text-align: center; margin-top: 10px;">Implemented hectares</div>
 </div>
 
-
+<!--
 The following map shows how many more hectares were implemented than benefited (sort of the effectiveness of the measures).  Negative numbers mean that more hectares benefited than were implemnted. <p/>
 <div class="map-display">
   <h3>Benefited Hectares per country</h3>
@@ -102,7 +102,7 @@ The following map shows how many more hectares were implemented than benefited (
   </div>
   <div class="caption" style="text-align: center; margin-top: 10px;">Benefited hectares</div>
 </div>
-
+-->
 
   <script>
     
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 	    return obj;
 	}, {});
 
-
+        let offset = 0;
 	const southWestB = L.latLng(-90, -180);
 	const northEastB = L.latLng(90, 180);
 	const bounds = L.latLngBounds(southWestB, northEastB);
@@ -267,9 +267,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 	    '#00441b'
 	];
 
-	const minValue = Math.min(...Object.values(dataByCountry));
-	const maxValue = Math.max(...Object.values(dataByCountry));
-        const offset = (minValue < 0) ? (1-minValue) : 0;
+        const minValue = Math.min(...Object.values(dataByCountry));
+        const maxValue = Math.max(...Object.values(dataByCountry));
+        offset = (minValue < 0) ? (1-minValue) : 0;
 	const logMinValue = Math.log(minValue+offset);
 	const logMaxValue = Math.log(maxValue+offset);
 	const range = logMaxValue - logMinValue;
@@ -359,8 +359,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 	
 	const legend = document.getElementById(legendId);
 	colors.forEach((color, index) => {
-	    const minValue = Math.exp(logMinValue + step * index);
-	    const maxValue = Math.exp(logMinValue + step * (index + 1));
+	    const minValue = Math.exp(logMinValue + step * index)-offset;
+	    const maxValue = Math.exp(logMinValue + step * (index + 1))-offset;
 	    
 	    const range = minValue.toFixed(2) + " - " + maxValue.toFixed(2);
 	    const legendItem = document.createElement("div");
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     await createWorldMap("map1","legend1", "SELECT%20country,%20SUM(implementedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
     await createWorldMap("map2","legend2", "SELECT%20country,%20SUM(benefitedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
-    await createWorldMap("map3","legend3", "SELECT%20country,%20SUM(implementedhectares)-SUM(benefitedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
+//    await createWorldMap("map3","legend3", "SELECT%20country,%20SUM(implementedhectares)-SUM(benefitedhectares)%20as%20sum_affectedhectares%20FROM%20syt_ggp_c2soil_data_2021_0%20GROUP%20BY%20country");
 
     // Add more createWorldMap calls for more maps
   });
