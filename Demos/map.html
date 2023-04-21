@@ -70,10 +70,11 @@
 In Syngenta's  Good Growth Plan, we commit to enhance biodiversity and soil health on 3 million hectares of farmland every year.
 <p/>
 The Soil dataset shows aggregated hectares of farmland reported since 2013 that benefit from soil conservation practices established in collaboration with Syngenta. The dataset also includes a description of the project objectives. The number of hectares of benefited farmland are tracked locally through in-field assessments, documented, and reported by project managers.    <p/>
-The following map shows the hectares of land in each country on which good soil management practices were introduced. <p/>
+
 Source: <a href="http://opendata.syngenta.agroknow.com/dataset/soil-data-2021">Soil Data 2021</a>
 <div class="map-display">
   <h3>Implemented Hectares per country</h3>
+The following map shows the hectares of land in each country on which good soil management practices were introduced. <p/>
   <div class="map-container">
     <div id="map1" class="map"></div>
     <div class="legend" id="legend1"></div>
@@ -81,10 +82,10 @@ Source: <a href="http://opendata.syngenta.agroknow.com/dataset/soil-data-2021">S
   <div class="caption" style="text-align: center; margin-top: 10px;">Caption for Map 1</div>
 </div>
 
-The following map shows the hectares of land in each country on which good soil management practices were introduced. <p/>
 
 <div class="map-display">
   <h3>Benefited Hectares per country</h3>
+The following map shows the hectares of land in each country which benefited from improved soil practices.  <p/>
   <div class="map-container">
     <div id="map2" class="map"></div>
     <div class="legend" id="legend2"></div>
@@ -321,7 +322,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 	    if (feature.properties && feature.properties.name) {
 		const countryCode = feature.properties.name;
 		const value = dataByCountry[countryCode] || 0;
-		layer.bindPopup(`<strong>${feature.properties.name}</strong><br/>Benefited Hectares: ${value}`);
+		layer.bindPopup(`<strong>${feature.properties.name}</strong><br/>Affected Hectares: ${value}`);
 	    }
 	};
 	
